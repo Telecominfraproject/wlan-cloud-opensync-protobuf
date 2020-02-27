@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>ai.connectus</groupId>
+  <groupId>com.telecominfraproject.wlan</groupId>
   <artifactId>opensync_protobuf</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>opensync_protobuf</name>
@@ -141,5 +141,14 @@
 			</build>
 		</profile>
 	</profiles>
+
+	<distributionManagement>
+		<repository>
+                        <!-- This is where releases/snapshots of artifacts are being uploaded/deployed -->
+			<id>io.cloudrepo</id> <!-- Must Match the Unique Identifier in settings.xml -->
+			<name>TIP WLAN Cloud Maven Repository</name>
+			<url>https://connectustechnologies.mycloudrepo.io/repositories/connectus_tip_cloud</url>
+		</repository>
+	</distributionManagement>
 	
 </project>
