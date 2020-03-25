@@ -1,6 +1,7 @@
-#tip-wlan-opensync-protobuf
+# tip-wlan-opensync-protobuf
 
-These protobuf files are taken from [Opensync repo](https://github.com/plume-design/opensync/tree/master/interfaces)
+The scripts in this repository produce maven artifact that has all the java classes generated from the opensync protobuf definitions.
+The protobuf files are taken from [Opensync repo](https://github.com/plume-design/opensync/tree/master/interfaces)
 
 Build instructions
 * make sure java jdk 9+ is installed
@@ -38,3 +39,5 @@ Build instructions
 </toolchains>
 ```
 * $ mvn clean install
+
+Results are in tip-wlan-opensync-protobuf/target/tip-wlan-opensync-protobuf-0.0.1-SNAPSHOT.jar
