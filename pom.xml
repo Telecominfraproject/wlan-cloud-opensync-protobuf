@@ -143,12 +143,12 @@
 	</profiles>
 
 	<distributionManagement>
-		<repository>
+                <repository>
                         <!-- This is where releases/snapshots of artifacts are being uploaded/deployed -->
-			<id>io.cloudrepo</id> <!-- Must Match the Unique Identifier in settings.xml -->
-			<name>TIP WLAN Cloud Maven Repository</name>
-			<url>https://connectustechnologies.mycloudrepo.io/repositories/connectus_tip_cloud</url>
-		</repository>
+                        <id>tip-wlan-cloud-maven-repo</id> <!-- Must Match the Unique Identifier in settings.xml -->
+                        <name>TIP WLAN Cloud Maven Repo</name>
+                        <url>https://tip.jfrog.io/artifactory/tip-wlan-cloud-maven-repo</url>
+                </repository>
 	</distributionManagement>
 	
 </project>
