@@ -36,6 +36,9 @@ jobs:
           cd src
           make protoc
           sudo make install
+      - name: Configure ~/.m2/toolchains.xml file
+        run: |
+          cp toolchains.xml ~/.m2/toolchains.xml
       - name: Build with Maven - test
         run:
           mvn -B --file pom.xml verify # Ensure all artifacts build successfully before we attempt deploy in order to prevent partial deploys.

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<toolchains>
+    <!-- protocol buffer 2.6.1 -->
+    <toolchain>
+        <type>protobuf</type>
+        <provides>
+            <version>2.6.1</version>
+            <vendor>google</vendor>
+        </provides>
+        <configuration>
+            <protocExecutable>/opt/local/bin/protoc</protocExecutable>
+        </configuration>
+    </toolchain>
+</toolchains>
+
