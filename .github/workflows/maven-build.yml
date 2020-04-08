@@ -22,6 +22,20 @@ jobs:
         with:
           path: ~/.m2
           key: ${{ runner.os }}-m2
+      - name: Cache Protobuf Binary
+        uses: actions/cache@v1
+        with:
+          path: /usr/local/protobuf-2.6.1
+          key: ${{ runner.os }}-protobuf
+      - name: Build protobuf binary if needed
+        run:
+          curl -O https://github.com/google/protobuf/releases/download/v2.6.1/protobuf-2.6.1.tar.gz
+          tar xf protobuf-2.6.1.tar.gz
+          cd protobuf-2.6.1
+          LDFLAGS="-static-libgcc -static-libstdc++" ./configure --disable-shared --prefix=/usr/local/protobuf-2.6.1
+          cd src
+          make protoc
+          make install
       - name: Build with Maven - test
         run:
           mvn -B --file pom.xml verify # Ensure all artifacts build successfully before we attempt deploy in order to prevent partial deploys.
