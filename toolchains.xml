@@ -8,7 +8,7 @@
             <vendor>google</vendor>
         </provides>
         <configuration>
-            <protocExecutable>/opt/local/bin/protoc</protocExecutable>
+            <protocExecutable>/usr/local/protobuf-2.6.1/bin/protoc</protocExecutable>
         </configuration>
     </toolchain>
 </toolchains>
