@@ -35,7 +35,7 @@ jobs:
           LDFLAGS="-static-libgcc -static-libstdc++" ./configure --disable-shared --prefix=/usr/local/protobuf-2.6.1
           cd src
           make protoc
-          make install
+          sudo make install
       - name: Build with Maven - test
         run:
           mvn -B --file pom.xml verify # Ensure all artifacts build successfully before we attempt deploy in order to prevent partial deploys.
