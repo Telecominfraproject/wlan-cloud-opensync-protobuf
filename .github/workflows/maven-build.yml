@@ -28,7 +28,7 @@ jobs:
           path: /usr/local/protobuf-2.6.1
           key: ${{ runner.os }}-protobuf
       - name: Build protobuf binary if needed
-        run:
+        run: |
           curl -O https://github.com/google/protobuf/releases/download/v2.6.1/protobuf-2.6.1.tar.gz
           tar xf protobuf-2.6.1.tar.gz
           cd protobuf-2.6.1
