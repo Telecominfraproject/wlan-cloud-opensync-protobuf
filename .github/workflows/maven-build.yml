@@ -32,7 +32,7 @@ jobs:
           curl -L -O https://github.com/google/protobuf/releases/download/v2.6.1/protobuf-2.6.1.tar.gz
           tar xf protobuf-2.6.1.tar.gz
           cd protobuf-2.6.1
-          LDFLAGS="-static-libgcc -static-libstdc++" ./configure --disable-shared --prefix=~/protobuf-2.6.1-bin
+          LDFLAGS="-static-libgcc -static-libstdc++" ./configure --disable-shared --prefix=/home/runner/work/tip-wlan-opensync-protobuf/tip-wlan-opensync-protobuf/protobuf-2.6.1-bin
           cd src
           make protoc
           make install
