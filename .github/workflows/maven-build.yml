@@ -29,7 +29,7 @@ jobs:
           key: ${{ runner.os }}-protobuf
       - name: Build protobuf binary if needed
         run: |
-          curl -O https://github.com/google/protobuf/releases/download/v2.6.1/protobuf-2.6.1.tar.gz
+          curl -L -O https://github.com/google/protobuf/releases/download/v2.6.1/protobuf-2.6.1.tar.gz
           tar xf protobuf-2.6.1.tar.gz
           cd protobuf-2.6.1
           LDFLAGS="-static-libgcc -static-libstdc++" ./configure --disable-shared --prefix=/usr/local/protobuf-2.6.1
