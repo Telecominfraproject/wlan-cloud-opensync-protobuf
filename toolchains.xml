@@ -8,7 +8,7 @@
             <vendor>google</vendor>
         </provides>
         <configuration>
-            <protocExecutable>/home/runner/work/tip-wlan-opensync-protobuf/tip-wlan-opensync-protobuf/protobuf-2.6.1-bin/bin/protoc</protocExecutable>
+            <protocExecutable>/home/runner/protobuf-2.6.1-bin/bin/protoc</protocExecutable>
         </configuration>
     </toolchain>
 </toolchains>

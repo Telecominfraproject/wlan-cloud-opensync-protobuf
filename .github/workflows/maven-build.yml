@@ -27,12 +27,20 @@ jobs:
         with:
           path: ~/protobuf-2.6.1-bin
           key: ${{ runner.os }}-protobuf
+      - name: Check if protobuf compiler binary is present
+        #id: check-protobuf
+        #outputs:
+        #  protoc-binary-exists:
+        #    description: True if the protoc binary was successfully restored from cache
+        run: ls /home/runner/protobuf-2.6.1-bin/bin/protoc
       - name: Build protobuf binary if needed
+        if: failure() # previous step failed - protoc file is not present
+        #if: ( ! test -f /home/runner/protobuf-2.6.1-bin/bin/protoc )
         run: |
           curl -L -O https://github.com/google/protobuf/releases/download/v2.6.1/protobuf-2.6.1.tar.gz
           tar xf protobuf-2.6.1.tar.gz
           cd protobuf-2.6.1
-          LDFLAGS="-static-libgcc -static-libstdc++" ./configure --disable-shared --prefix=/home/runner/work/tip-wlan-opensync-protobuf/tip-wlan-opensync-protobuf/protobuf-2.6.1-bin
+          LDFLAGS="-static-libgcc -static-libstdc++" ./configure --disable-shared --prefix=/home/runner/protobuf-2.6.1-bin
           cd src
           make protoc
           make install
