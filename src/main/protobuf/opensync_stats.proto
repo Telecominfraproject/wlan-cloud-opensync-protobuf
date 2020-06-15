@@ -411,6 +411,7 @@ message BSClient {
         optional bool           rrm_caps_lci_meas           = 28;
         optional bool           rrm_caps_ftm_range_rpt      = 29;
         optional uint32         backoff_period              = 30;
+        optional bytes          assoc_ies                   = 31;
     }
     message BSBandReport {
         required RadioBandType  band                        = 1;
@@ -428,6 +429,7 @@ message BSClient {
         optional uint32         probe_direct_cnt            = 13;
         optional uint32         probe_direct_blocked        = 14;
         repeated BSEvent        event_list                  = 15;
+        optional string         ifname                      = 16;
     }
     required string             mac_address                 = 1;
     repeated BSBandReport       bs_band_report              = 2;
