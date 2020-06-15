@@ -27,6 +27,15 @@ jobs:
         with:
           path: ~/protobuf-2.6.1-bin
           key: ${{ runner.os }}-protobuf
+      - name: Install Protobuf binary
+        run: |
+          curl -L -O https://github.com/google/protobuf/releases/download/v2.6.1/protobuf-2.6.1.tar.gz
+          tar xf protobuf-2.6.1.tar.gz
+          cd protobuf-2.6.1
+          LDFLAGS="-static-libgcc -static-libstdc++" ./configure --disable-shared --prefix=/home/runner/protobuf-2.6.1-bin
+          cd src
+          make protoc
+          make install
       - name: Check if protobuf compiler binary is present
         run: ls /home/runner/protobuf-2.6.1-bin/bin/protoc
       - name: Build protobuf binary if needed
