@@ -3,6 +3,8 @@ name: Run sonar analysis
 on:
   push:
     branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 env:
   SONAR_URL: https://sonarcloud.io
@@ -26,20 +28,18 @@ jobs:
       with:
         path: ~/protobuf-2.6.1-bin
         key: ${{ runner.os }}-protobuf
-    - name: Check if protobuf compiler binary is present
-      run: ls /home/runner/protobuf-2.6.1-bin/bin/protoc
-    - name: Build protobuf binary if needed
-      if: failure() # previous step failed - protoc file is not present
+    - name: Build protobuf binary
       run: |
-        curl -L -O https://github.com/google/protobuf/releases/download/v2.6.1/protobuf-2.6.1.tar.gz
-        tar xf protobuf-2.6.1.tar.gz
-        cd protobuf-2.6.1
-        LDFLAGS="-static-libgcc -static-libstdc++" ./configure --disable-shared --prefix=/home/runner/protobuf-2.6.1-bin
-        cd src
-        make protoc
-        make install
+        if ! test -f /home/runner/protobuf-2.6.1-bin/bin/protoc; then
+          curl -L -O https://github.com/google/protobuf/releases/download/v2.6.1/protobuf-2.6.1.tar.gz
+          tar xf protobuf-2.6.1.tar.gz
+          cd protobuf-2.6.1
+          LDFLAGS="-static-libgcc -static-libstdc++" ./configure --disable-shared --prefix=/home/runner/protobuf-2.6.1-bin
+          cd src
+          make protoc
+          make install
+        fi
     - name: Configure ~/.m2/toolchains.xml file
-      if: always()
       run: |
         cp toolchains.xml ~/.m2/toolchains.xml
     - name: Run sonar
