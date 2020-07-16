@@ -474,6 +474,65 @@ message RssiReport {
 
 ////////////////////////////////////////////////////////////////////////////////
 //
+// Network probe parameters
+//
+////////////////////////////////////////////////////////////////////////////////
+enum StateUpDown {
+    SUD_down = 0;
+    SUD_up = 1;
+    SUD_error = 2;
+}
+ 
+message DNSProbeMetric {
+    optional bytes serverIP                       = 1;
+    optional StateUpDown state = 2;    // State of the server
+    optional uint32 latency                       = 3;    // Response latency in ms
+}
+
+message VLANMetrics {
+    optional string vlanIF                              = 1;    // The name of the interface (ie: brtrunk.100)
+    optional StateUpDown dhcpState   = 2;    // The state of the DHCP server according to that vlan
+    optional uint32 dhcpLatency                         = 3;
+    optional StateUpDown dnsState    = 4;    // The state of the DNS server according to that vlan
+    optional uint32 dnsLatency                          = 5;
+    optional StateUpDown obsV200_radiusState = 6;    // The state of the Radius server according to that vlan
+    optional uint32 obsV200_radiusLatency                       = 7;
+    repeated DNSProbeMetric dnsProbeResults         = 8;    // ver=1300
+
+    // -- duration
+    optional uint32 dur_vlanIF           = 501;     //category Network
+    optional uint32 dur_dhcpState        = 502;     //category Network
+    optional uint32 dur_dhcpLatency      = 503;     //category Network
+    optional uint32 dur_dnsState         = 504;     //category Network
+    optional uint32 dur_dnsLatency       = 505;     //category Network
+                                                    // optional uint32 obsV200_dur_radiusState      = 506;
+                                                    // optional uint32 obsV200_dur_radiusLatency    = 507;
+    optional uint32 dur_dnsReport        = 508;
+}
+
+message RADIUSMetrics {
+    optional bytes serverIP    = 1;
+    optional uint32 noAnswer   = 2;
+    optional uint32 latencyMin = 3;
+    optional uint32 latencyMax = 4;
+    optional uint32 latencyAve = 5;
+
+    // -- duration
+    optional uint32 dur_serverIP   = 501;   //category Network
+    optional uint32 dur_noAnswer   = 502;   //category Network
+    optional uint32 dur_latencyMin = 503;   //category Network
+    optional uint32 dur_latencyMax = 504;   //category Network
+    optional uint32 dur_latencyAve = 505;   //category Network
+}
+
+
+message NetworkProbe {
+    optional DNSProbeMetric dns_probe    = 1;
+    optional VLANMetrics    vlan_probe   = 2;
+    optional RADIUSMetrics  radius_probe = 3;
+}
+////////////////////////////////////////////////////////////////////////////////
+//
 // Overall report that might contain all individual stats reports
 //
 ////////////////////////////////////////////////////////////////////////////////
@@ -486,5 +545,6 @@ message Report {
     repeated Device         device          = 6;
     repeated BSReport       bs_report       = 7;
     repeated RssiReport     rssi_report     = 8;
+    repeated NetworkProbe   network_probe   = 101;
 }
 
