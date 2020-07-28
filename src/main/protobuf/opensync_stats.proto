@@ -530,6 +530,7 @@ message NetworkProbe {
     optional DNSProbeMetric dns_probe    = 1;
     optional VLANMetrics    vlan_probe   = 2;
     optional RADIUSMetrics  radius_probe = 3;
+    optional uint64         timestamp_ms = 4;
 }
 ////////////////////////////////////////////////////////////////////////////////
 //
