@@ -263,6 +263,7 @@ message Survey {
         optional uint32     busy_self       = 8;    /* Rx_self (derived from succesful Rx frames)*/
         optional uint32     offset_ms       = 9;
         optional uint32     busy_ext        = 10;   /* 40MHz extention channel busy */
+        optional uint32     noise           = 11;
     }
     message SurveyAvg {
         required uint32     channel         = 1;
@@ -271,6 +272,7 @@ message Survey {
         optional AvgType    busy_rx         = 4;    /* Rx = Rx_obss + Rx_errr (self and obss errors) */
         optional AvgType    busy_self       = 5;    /* Rx_self (derived from succesful Rx frames)*/
         optional AvgType    busy_ext        = 6;   /* 40MHz extention channel busy */
+        optional AvgType    noise           = 7;
     }
     required RadioBandType  band            = 1;
     required SurveyType     survey_type     = 2;
