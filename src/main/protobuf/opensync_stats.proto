@@ -486,7 +486,7 @@ enum StateUpDown {
 }
  
 message DNSProbeMetric {
-    optional bytes serverIP                       = 1;
+    optional string serverIP                       = 1;
     optional StateUpDown state = 2;    // State of the server
     optional uint32 latency                       = 3;    // Response latency in ms
 }
