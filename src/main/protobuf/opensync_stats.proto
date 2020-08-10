@@ -534,6 +534,91 @@ message NetworkProbe {
     optional RADIUSMetrics  radius_probe = 3;
     optional uint64         timestamp_ms = 4;
 }
+
+////////////////////////////////////////////////////////////////////////////////
+//
+// UCC Stats
+// 
+// - Contains UCC voice/video detection information
+//
+////////////////////////////////////////////////////////////////////////////////
+
+message RtpFlowStats
+{
+    enum RtpFlowDirection
+    {
+        RTP_UPSTREAM = 0;
+        RTP_DOWNSTREAM = 1;
+    }
+    enum RtpFlowType
+    {
+        RTP_VOICE = 0;
+        RTP_VIDEO = 1;
+    }
+    optional RtpFlowDirection Direction = 1;
+    optional RtpFlowType Type           = 2;
+    optional uint32 Latency             = 3;
+    optional uint32 Jitter              = 4;
+    optional uint32 PacketLossPercent   = 5;
+    optional uint32 PacketLossConsec    = 6;
+    optional uint32 Codec               = 7;
+    optional uint32 MOSx100             = 8;
+    optional bytes BlockCodecs          = 9;
+    optional uint32 TotalPacketsSent    = 10;
+    optional uint32 TotalPacketsLost    = 11;
+    optional uint32 RtpSeqFirst         = 12;
+    optional uint32 RtpSeqLast          = 13;
+    optional uint32 statsIdx            = 14;
+}
+
+message SIPcallStart
+{
+    optional uint64 sessionId      = 1;
+    optional uint64 wifiSessionId  = 2;
+    optional bytes cltMac          = 3;
+    repeated string Codecs         = 4;
+    optional string providerDomain = 5;
+    optional string deviceInfo     = 6;
+}
+
+message SIPcallStop
+{
+    enum SipCallStopReason
+    {
+        BYE_OK = 0;
+        CALL_DROPPED = 1;
+    }
+    optional uint64 sessionId         = 1;
+    optional uint64 wifiSessionId     = 2;
+    optional bytes cltMac             = 3;
+    optional SipCallStopReason Reason = 4;
+    optional uint32 callDuration      = 5;
+    repeated RtpFlowStats Stats   = 6;
+}
+
+
+message SIPcallReport
+{
+    enum SipCallReportReason                
+    {
+        ROAMED_FROM = 0;
+        ROAMED_TO = 1;
+        GOT_PUBLISH = 2;
+    }
+    optional uint64 sessionId           = 1;
+    optional uint64 wifiSessionId       = 2;
+    optional bytes cltMac               = 3;
+    repeated RtpFlowStats Stats     = 4;
+    optional SipCallReportReason Reason = 5;
+}
+
+message UCCReport
+{
+        optional SIPcallStart sipCallStart = 1;
+        optional SIPcallStop sipCallStop = 2;
+        optional SIPcallReport sipCallReport = 3;
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 //
 // Overall report that might contain all individual stats reports
@@ -548,6 +633,7 @@ message Report {
     repeated Device         device          = 6;
     repeated BSReport       bs_report       = 7;
     repeated RssiReport     rssi_report     = 8;
+    repeated UCCReport      ucc_report      = 9;
     repeated NetworkProbe   network_probe   = 101;
 }
 
