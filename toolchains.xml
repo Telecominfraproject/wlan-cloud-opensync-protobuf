@@ -4,11 +4,11 @@
     <toolchain>
         <type>protobuf</type>
         <provides>
-            <version>2.6.1</version>
+            <version>3.12.4</version>
             <vendor>google</vendor>
         </provides>
         <configuration>
-            <protocExecutable>/home/runner/protobuf-2.6.1-bin/bin/protoc</protocExecutable>
+            <protocExecutable>/home/runner/protobuf-3.12.4-bin/bin/protoc</protocExecutable>
         </configuration>
     </toolchain>
 </toolchains>

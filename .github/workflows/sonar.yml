@@ -33,15 +33,15 @@ jobs:
     - name: Cache Protobuf Binary
       uses: actions/cache@v1
       with:
-        path: ~/protobuf-2.6.1-bin
+        path: ~/protobuf-3.12.4-bin
         key: ${{ runner.os }}-protobuf
     - name: Build protobuf binary
       run: |
-        if ! test -f /home/runner/protobuf-2.6.1-bin/bin/protoc; then
-          curl -L -O https://github.com/google/protobuf/releases/download/v2.6.1/protobuf-2.6.1.tar.gz
-          tar xf protobuf-2.6.1.tar.gz
-          cd protobuf-2.6.1
-          LDFLAGS="-static-libgcc -static-libstdc++" ./configure --disable-shared --prefix=/home/runner/protobuf-2.6.1-bin
+        if ! test -f /home/runner/protobuf-3.12.4-bin/bin/protoc; then
+          curl -L -O https://github.com/google/protobuf/releases/download/v3.12.4/protobuf-all-3.12.4.tar.gz
+          tar xf protobuf-all-3.12.4.tar.gz
+          cd protobuf-3.12.4
+          LDFLAGS="-static-libgcc -static-libstdc++" ./configure --disable-shared --prefix=/home/runner/protobuf-3.12.4-bin
           cd src
           make protoc
           make install
