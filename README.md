@@ -6,7 +6,7 @@ The protobuf files are taken from [Opensync repo](https://github.com/plume-desig
 Build instructions
 * make sure java jdk 9+ is installed
 * make sure maven is installed
-* make sure protoc version 2.6.1 is installed
+* make sure protoc version 3.12.4 is installed
 * configure maven settings.xml with maven repository credentials
 * vim ~/.m2/settings.xml
 ```
@@ -25,11 +25,11 @@ Build instructions
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <toolchains>
-    <!-- protocol buffer 2.6.1 -->
+    <!-- protocol buffer 3.12.4 -->
     <toolchain>
         <type>protobuf</type>
         <provides>
-            <version>2.6.1</version>
+            <version>3.12.4</version>
             <vendor>google</vendor>
         </provides>
         <configuration>
