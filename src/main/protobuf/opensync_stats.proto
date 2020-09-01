@@ -654,7 +654,6 @@ message UCCReport
 // all other fields are optional
 // there will be more fields in the future, this is only for STA_Client_Assoc event
 
-
 ////////////////////////////////////////////////////////////////////////////////
 //
 // Generic Event report
@@ -664,7 +663,6 @@ message UCCReport
 //
 ////////////////////////////////////////////////////////////////////////////////
 message EventReport {
-
     // Client Association Event
     message ClientAssocEvent {
         optional string sta_mac                = 1;
@@ -682,23 +680,23 @@ message EventReport {
 
     // Client Authentication Event
     message ClientAuthEvent {
-        optional bytes staMac                  = 1;
-        optional uint64 sessionId              = 2;
+        optional string sta_mac                = 1;
+        optional uint64 session_id             = 2;
         optional string ssid                   = 3;
         optional RadioBandType band            = 4;
-        optional uint32 authStatus             = 5;
+        optional uint32 auth_status            = 5;
     }
 
     // Client Disconnect Event
     message ClientDisconnectEvent {
-        optional bytes staMac                  = 1;
-        optional uint64 sessionId              = 2;
+        optional string sta_mac                = 1;
+        optional uint64 session_id             = 2;
         optional uint32 reason                 = 3;
         optional DeviceType dev_type           = 4;
-        optional FrameType frType              = 5;
-        optional uint64 lastSentUpTsInUs       = 6;
-        optional uint64 lastRcvUpTsInUs        = 7;
-        optional uint32 internalRC             = 8;
+        optional FrameType fr_type             = 5;
+        optional uint64 lsent_up_ts_in_us      = 6;
+        optional uint64 lrcv_up_ts_in_us       = 7;
+        optional uint32 internal_rc            = 8;
         optional int32 rssi                    = 9;
         optional string ssid                   = 10;
         optional RadioBandType band            = 11;
@@ -706,44 +704,44 @@ message EventReport {
 
     // Client Failure Event
     message ClientFailureEvent {
-        optional bytes staMac                  = 1;
-        optional uint64 sessionId              = 2;
+        optional string sta_mac                = 1;
+        optional uint64 session_id             = 2;
         optional string ssid                   = 3;
-        optional int32  reasonCode             = 4;
-        optional string reasonStr              = 5;
+        optional int32  reason_code            = 4;
+        optional string reason_str             = 5;
     }
 
 
     // Client First Data Event
     message ClientFirstDataEvent {
-        optional bytes staMac                  = 1;
-        optional uint64 sessionId              = 2;
-        optional uint64 firstDataTxedUpTsInUs  = 3;
-        optional uint64 firstDataRxedUpTsInUs  = 4;
+        optional string sta_mac                = 1;
+        optional uint64 session_id             = 2;
+        optional uint64 fdata_tx_up_ts_in_us   = 3;
+        optional uint64 fdata_rx_up_ts_in_us   = 4;
     }
 
 
     // Client Id Event
     message ClientIdEvent {
-        optional bytes cltMac                  = 1;
-        optional uint64 sessionId              = 2;
-        optional string cltId                  = 3;
+        optional string clt_mac                = 1;
+        optional uint64 session_id             = 2;
+        optional string clt_id                 = 3;
     }
 
     // Client IP Event
     message ClientIpEvent {
-        optional bytes staMac                  = 1;
-        optional uint64 sessionId              = 2;
-        optional bytes ipAddr                  = 3;
+        optional string sta_mac                = 1;
+        optional uint64 session_id             = 2;
+        optional bytes ip_addr                 = 3;
     }
 
     // Client Timeout Event
     message ClientTimeoutEvent {
-        optional bytes staMac                  = 1;
-        optional uint64 sessionId              = 2;
-        optional CTReasonType rCode            = 3;
-        optional uint64 lastSentUpTsInUs       = 4;
-        optional uint64 lastRcvUpTsInUs        = 5;
+        optional string sta_mac                = 1;
+        optional uint64 session_id             = 2;
+        optional CTReasonType r_code           = 3;
+        optional uint64 last_sent_up_ts_in_us  = 4;
+        optional uint64 last_rcv_up_ts_in_us   = 5;
     }
 
     required EventType event_type                          = 1;
@@ -756,7 +754,6 @@ message EventReport {
     optional ClientIpEvent client_ip_event                 = 8;
     optional ClientTimeoutEvent client_timeout_event       = 9;
 }
-
 
 ////////////////////////////////////////////////////////////////////////////////
 //
