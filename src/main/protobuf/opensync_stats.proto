@@ -642,11 +642,57 @@ message SIPcallReport
     optional SipCallReportReason Reason = 5;
 }
 
+message CamiStreamingVideoDetectPattern
+{
+    enum StreamingVideoType
+    {
+        UNKNOWN = 0;
+        NETFLIX = 1;
+        YOUTUBE = 2;
+        PLEX    = 3;
+    }
+    optional string dnsLookupPattern           = 1; // DNS name pattern for detection (like *.nflxvideo.net)
+    optional StreamingVideoType videoType      = 2;
+}
+
+message CamiStreamingVideoSessionStart
+{
+    optional uint64 videoSessionId    = 1;
+    optional uint64 SessionId         = 2;
+    optional bytes cltMac             = 3;
+    optional bytes serverIp           = 4;
+    optional CamiStreamingVideoDetectPattern.StreamingVideoType Type = 5;
+}
+
+message CamiStreamingVideoServerDetected
+{
+    optional uint64 videoSessionId    = 1;
+    optional uint64 SessionId         = 2;
+    optional bytes cltMac             = 3;
+    optional bytes serverIp           = 4;
+    optional string serverDnsName     = 5;
+    optional CamiStreamingVideoDetectPattern.StreamingVideoType Type = 6;
+}
+
+message CamiStreamingVideoStop
+{
+    optional uint64 videoSessionId    = 1;
+    optional uint64 SessionId         = 2;
+    optional bytes cltMac             = 3;
+    optional bytes serverIp           = 4;
+    optional uint64 totalBytes        = 5;
+    optional CamiStreamingVideoDetectPattern.StreamingVideoType Type = 6;
+    optional uint32 durationInSecs    = 7;
+}
+
 message UCCReport
 {
         optional SIPcallStart sipCallStart = 1;
         optional SIPcallStop sipCallStop = 2;
         optional SIPcallReport sipCallReport = 3;
+        optional CamiStreamingVideoStop streamVideoStop = 4;
+        optional CamiStreamingVideoServerDetected streamVideoServer = 5;
+        optional CamiStreamingVideoSessionStart streamVideoSessionStart = 6;
 }
 
 // type of ConnectionEvent is determined by ConnectionEventType enum
