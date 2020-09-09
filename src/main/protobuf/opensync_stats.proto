@@ -563,9 +563,9 @@ message NetworkProbe {
 }
 ////////////////////////////////////////////////////////////////////////////////
 //
-// UCC Stats
+// Voice and Video Stats
 // 
-// - Contains UCC voice/video detection information
+// - Contains voice/video detection information
 //
 ////////////////////////////////////////////////////////////////////////////////
 message RtpFlowStats {
@@ -579,98 +579,98 @@ message RtpFlowStats {
 		RTP_VIDEO = 1;
 	}
 
-	optional RtpFlowDirection Direction = 1;
-	optional RtpFlowType rtpFlowType = 2;
-	optional uint32 Latency = 3;
-	optional uint32 Jitter = 4;
-	optional uint32 PacketLossPercent = 5;
-	optional uint32 PacketLossConsec = 6;
-	optional uint32 Codec = 7;
-	optional uint32 MOSx100 = 8;
-	optional bytes BlockCodecs = 9;
-	optional uint32 TotalPacketsSent = 10;
-	optional uint32 TotalPacketsLost = 11;
-	optional uint32 RtpSeqFirst = 12;
-	optional uint32 RtpSeqLast = 13;
-	optional uint32 statsIdx = 14;
+	optional RtpFlowDirection direction = 1;
+	optional RtpFlowType rtp_flow_type = 2;
+	optional uint32 latency = 3;
+	optional uint32 jitter = 4;
+	optional uint32 packet_loss_percent = 5;
+	optional uint32 packet_loss_consec = 6;
+	optional uint32 codec = 7;
+	optional uint32 mosx_100 = 8;
+	optional bytes block_codecs = 9;
+	optional uint32 total_packets_sent = 10;
+	optional uint32 total_packets_lost = 11;
+	optional uint32 rtp_seq_first = 12;
+	optional uint32 rtp_seq_last = 13;
+	optional uint32 stats_idx = 14;
 }
 
-message SIPcallStart {
-	optional uint64 sessionId = 1;
-	optional uint64 wifiSessionId = 2;
-	optional bytes cltMac = 3;
-	repeated string Codecs = 4;
-	optional string providerDomain = 5;
-	optional string deviceInfo = 6;
+message CallStart {
+	optional uint64 session_id = 1;
+	optional uint64 wifi_session_id = 2;
+	optional bytes client_mac = 3;
+	repeated string codecs = 4;
+	optional string provider_domain = 5;
+	optional string device_info = 6;
 }
 
-message SIPcallStop {
-	enum SipCallStopReason {
+message CallStop {
+	enum CallStopReason {
 		BYE_OK = 0;
 		CALL_DROPPED = 1;
 	}
 
-	optional uint64 sessionId = 1;
-	optional uint64 wifiSessionId = 2;
-	optional bytes cltMac = 3;
-	optional SipCallStopReason Reason = 4;
-	optional uint32 callDuration = 5;
-	repeated RtpFlowStats Stats = 6;
+	optional uint64 session_id = 1;
+	optional uint64 wifi_session_id = 2;
+	optional bytes client_mac = 3;
+	optional CallStopReason reason = 4;
+	optional uint32 call_duration = 5;
+	repeated RtpFlowStats stats = 6;
 }
 
-message SIPcallReport {
-	enum SipCallReportReason {
+message CallReport {
+	enum CallReportReason {
 		ROAMED_FROM = 0;
 		ROAMED_TO = 1;
 		GOT_PUBLISH = 2;
 	}
 
-	optional uint64 sessionId = 1;
-	optional uint64 wifiSessionId = 2;
-	optional bytes cltMac = 3;
-	repeated RtpFlowStats Stats = 4;
-	optional SipCallReportReason Reason = 5;
+	optional uint64 session_id = 1;
+	optional uint64 wifi_session_id = 2;
+	optional bytes client_mac = 3;
+	repeated RtpFlowStats stats = 4;
+	optional CallReportReason reason = 5;
 }
 
 message StreamingVideoDetectPattern {
-	optional string dnsLookupPattern = 1; // DNS name pattern for detection (like *.nflxvideo.net)
-	optional StreamingVideoType videoType = 2;
+	optional string dns_lookup_pattern = 1; // DNS name pattern for detection (like *.nflxvideo.net)
+	optional StreamingVideoType video_type = 2;
 }
 
 message StreamingVideoSessionStart {
-	optional uint64 videoSessionId = 1;
-	optional uint64 SessionId = 2;
-	optional bytes cltMac = 3;
-	optional bytes serverIp = 4;
-	optional StreamingVideoType streamingVideoType = 5;
+	optional uint64 video_session_id = 1;
+	optional uint64 session_id = 2;
+	optional bytes client_mac = 3;
+	optional bytes server_ip = 4;
+	optional StreamingVideoType streaming_video_type = 5;
 }
 
 message StreamingVideoServerDetected {
-	optional uint64 videoSessionId = 1;
-	optional uint64 SessionId = 2;
-	optional bytes cltMac = 3;
-	optional bytes serverIp = 4;
-	optional string serverDnsName = 5;
-	optional StreamingVideoType streamingVideoType = 6;
+	optional uint64 video_session_id = 1;
+	optional uint64 session_id = 2;
+	optional bytes client_mac = 3;
+	optional bytes server_ip = 4;
+	optional string server_dns_name = 5;
+	optional StreamingVideoType streaming_video_type = 6;
 }
 
 message StreamingVideoStop {
-	optional uint64 videoSessionId = 1;
-	optional uint64 SessionId = 2;
-	optional bytes cltMac = 3;
-	optional bytes serverIp = 4;
-	optional uint64 totalBytes = 5;
-	optional StreamingVideoType streamingVideoType = 6;
-	optional uint32 durationInSecs = 7;
+	optional uint64 video_session_id = 1;
+	optional uint64 session_id = 2;
+	optional bytes client_mac = 3;
+	optional bytes server_ip = 4;
+	optional uint64 total_bytes = 5;
+	optional StreamingVideoType streaming_video_type = 6;
+	optional uint32 duration_sec = 7;
 }
 
-message UCCReport {
-	optional SIPcallStart sipCallStart = 1;
-	optional SIPcallStop sipCallStop = 2;
-	optional SIPcallReport sipCallReport = 3;
-	optional StreamingVideoStop streamVideoStop = 4;
-	optional StreamingVideoServerDetected streamVideoServer = 5;
-	optional StreamingVideoSessionStart streamVideoSessionStart = 6;
+message VideoVoiceReport {
+	optional CallStart call_start = 1;
+	optional CallStop call_stop = 2;
+	optional CallReport call_report = 3;
+	optional StreamingVideoStop stream_video_stop = 4;
+	optional StreamingVideoServerDetected stream_video_server = 5;
+	optional StreamingVideoSessionStart stream_video_session_start = 6;
 }
 
 // type of ConnectionEvent is determined by ConnectionEventType enum
@@ -790,7 +790,7 @@ message Report {
 	repeated Device device = 6;
 	repeated BSReport bs_report = 7;
 	repeated RssiReport rssi_report = 8;
-	repeated UCCReport ucc_report = 9;
+	repeated VideoVoiceReport video_voice_report = 9;
 	repeated NetworkProbe network_probe = 101;
 	repeated EventReport event_report = 102;
 }
