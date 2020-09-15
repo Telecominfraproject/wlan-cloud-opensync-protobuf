@@ -671,6 +671,7 @@ message VideoVoiceReport {
 	optional StreamingVideoStop stream_video_stop = 4;
 	optional StreamingVideoServerDetected stream_video_server = 5;
 	optional StreamingVideoSessionStart stream_video_session_start = 6;
+        optional uint64 timestamp_ms = 7;
 }
 
 // type of ConnectionEvent is determined by ConnectionEventType enum
