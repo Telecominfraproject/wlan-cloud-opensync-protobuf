@@ -608,7 +608,7 @@ message CallStart {
 	optional string provider_domain = 5;
 	optional string device_info = 6;
 	optional uint32 channel = 7;
-    optional string radio_type = 8;
+    required RadioBandType  band = 8;
 }
 
 message CallStop {
@@ -624,7 +624,7 @@ message CallStop {
 	optional uint32 call_duration = 5;
 	repeated RtpFlowStats stats = 6;
 	optional uint32 channel = 7;
-    optional string radio_type = 8;
+    required RadioBandType  band = 8;
     repeated string codecs = 9;
     optional string provider_domain = 10;
 }
@@ -642,7 +642,7 @@ message CallReport {
 	repeated RtpFlowStats stats = 4;
 	optional CallReportReason reason = 5;
     optional uint32 channel = 6;
-    optional string radio_type = 7;
+    required RadioBandType  band = 7;
     repeated string codecs = 8;
     optional string provider_domain = 9;
 }
