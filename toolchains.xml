@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <toolchains>
-    <!-- protocol buffer 2.6.1 -->
-    <toolchain>
-        <type>protobuf</type>
-        <provides>
-            <version>3.12.4</version>
-            <vendor>google</vendor>
-        </provides>
-        <configuration>
-            <protocExecutable>/home/runner/protobuf-3.12.4-bin/bin/protoc</protocExecutable>
-        </configuration>
-    </toolchain>
+	<!-- protocol buffer 2.6.1 -->
+	<toolchain>
+		<type>protobuf</type>
+		<provides>
+			<version>3.12.4</version>
+			<vendor>google</vendor>
+		</provides>
+		<configuration>
+			<protocExecutable>/home/runner/protobuf-3.12.4-bin/bin/protoc</protocExecutable>
+		</configuration>
+	</toolchain>
 </toolchains>
 
