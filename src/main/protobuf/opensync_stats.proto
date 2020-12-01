@@ -171,6 +171,11 @@ enum StreamingVideoType {
 	PLEX = 3;
 }
 
+enum ChannelSwitchReason {
+        radar_detected                               = 0;
+        high_interference                            = 1;
+    }
+
 ////////////////////////////////////////////////////////////////////////////////
 //
 // Neighbor report: Report contains OBSS neighbor nodes/beacons retreived from
@@ -813,6 +818,15 @@ message EventReport {
         optional uint64                 last_rcv_up_ts_in_us                = 5;
         optional uint32                 timestamp_ms                        = 6;
     }
+    
+      /* Channel Switch Event */
+    message ChannelSwitchEvent {
+    	required RadioBandType          band                                = 1;
+    	required ChannelSwitchReason    reason                              = 2;
+    	required uint32                 channel                             = 3;
+    	optional uint64                 timestamp_ms                        = 4;
+    }
+    
 
     /* Client Session */
     message ClientSession {
@@ -830,6 +844,8 @@ message EventReport {
 
     /* Multiple Client Sessions */
     repeated ClientSession              client_session                      = 1;
+    repeated ChannelSwitchEvent         channel_switch                      = 2;
+    
 }
 
 ////////////////////////////////////////////////////////////////////////////////
