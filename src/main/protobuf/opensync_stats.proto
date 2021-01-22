@@ -1,5 +1,5 @@
 // Copyright (c) 2015, Plume Design Inc. All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
 //    1. Redistributions of source code must retain the above copyright
@@ -10,7 +10,7 @@
 //    3. Neither the name of the Plume Design Inc. nor the
 //       names of its contributors may be used to endorse or promote products
 //       derived from this software without specific prior written permission.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 // ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -185,8 +185,8 @@ enum ChannelSwitchReason {
 // Neighbor report: Report contains OBSS neighbor nodes/beacons retreived from
 // scanning:
 //
-// - off-chan   : neighbors retreived from scanning foreingh selected channels 
-// - on-chan    : neighbors retreived from home channel 
+// - off-chan   : neighbors retreived from scanning foreingh selected channels
+// - on-chan    : neighbors retreived from home channel
 // - full       : neighbors retreived from all channels current regulatory domain
 //
 ////////////////////////////////////////////////////////////////////////////////
@@ -212,7 +212,7 @@ message Neighbor {
 // Client report: Report contains rx and tx stats for a single station
 //
 // - Average stats  : Averaged rx and tx stats
-// - Extended stats : Detailed MCS, NSS and BW stats for tx and rx 
+// - Extended stats : Detailed MCS, NSS and BW stats for tx and rx
 //
 ////////////////////////////////////////////////////////////////////////////////
 message Client {
@@ -293,7 +293,7 @@ message ClientReport {
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// Survey report : Chanel utilization. Report contains samples 
+// Survey report : Chanel utilization. Report contains samples
 //
 // error rxbusy and obssbussy represent rx samples that were errorenous where:
 // - rxbusy is rx time with decoded BSSIS
@@ -361,9 +361,9 @@ message Capacity {
 ////////////////////////////////////////////////////////////////////////////////
 message Device {
     message LoadAvg {
-        optional double     one                    = 1; 
-        optional double     five                   = 2; 
-        optional double     fifteen                = 3; 
+        optional double     one                    = 1;
+        optional double     five                   = 2;
+        optional double     fifteen                = 3;
     }
     message RadioTemp {
         optional RadioBandType  band               = 1;
@@ -426,8 +426,8 @@ message Device {
 ////////////////////////////////////////////////////////////////////////////////
 //
 // Band Steering Client report
-// 
-// - Contains band steering stats per client per station 
+//
+// - Contains band steering stats per client per station
 //
 ////////////////////////////////////////////////////////////////////////////////
 message BSClient {
@@ -494,8 +494,8 @@ message BSReport {
 ////////////////////////////////////////////////////////////////////////////////
 //
 // Band Steering Client report
-// 
-// - Contains band steering stats per client per station 
+//
+// - Contains band steering stats per client per station
 //
 ////////////////////////////////////////////////////////////////////////////////
 message RssiPeer {
@@ -533,7 +533,7 @@ enum StateUpDown {
     SUD_up = 1;
     SUD_error = 2;
 }
- 
+
 message DNSProbeMetric {
     optional string serverIP                       = 1;
     optional StateUpDown state = 2;    // State of the server
@@ -803,7 +803,7 @@ message EventReport {
     	required uint32                 channel                             = 3;
     	optional uint64                 timestamp_ms                        = 4;
     }
-    
+
 
     /* Client Session */
     message ClientSession {
@@ -821,18 +821,18 @@ message EventReport {
 
     /* DHCP Common Data */
     message DhcpCommonData {
-        optional uint32                 x_id                                = 1;
-        optional uint32                 vlan_id                             = 2;
-        optional bytes                  dhcp_server_ip                      = 3;
-        optional bytes                  client_ip                           = 4;
-        optional bytes                  relay_ip                            = 5;
-        optional string                 device_mac_address                  = 6;
+        required uint32                 x_id                                = 1;
+        required uint32                 vlan_id                             = 2;
+        required bytes                  dhcp_server_ip                      = 3;
+        required bytes                  client_ip                           = 4;
+        required bytes                  relay_ip                            = 5;
+        required string                 device_mac_address                  = 6;
         required uint64                 timestamp_ms                        = 7;
     }
 
     /* DHCP Ack Event */
     message DhcpAckEvent {
-        optional DhcpCommonData         dhcp_common_data                    = 1;
+        required DhcpCommonData         dhcp_common_data                    = 1;
         optional bytes                  subnet_mask                         = 2;
         optional bytes                  primary_dns                         = 3;
         optional bytes                  secondary_dns                       = 4;
@@ -845,48 +845,48 @@ message EventReport {
 
     /* DHCP Nak Event */
     message DhcpNakEvent {
-        optional DhcpCommonData         dhcp_common_data                    = 1;
+        required DhcpCommonData         dhcp_common_data                    = 1;
         optional bool                   from_internal                       = 2;
     }
 
     /* DHCP Offer Event */
     message DhcpOfferEvent {
-        optional DhcpCommonData         dhcp_common_data                    = 1;
+        required DhcpCommonData         dhcp_common_data                    = 1;
         optional bool                   from_internal                       = 2;
     }
 
     /* DHCP Inform Event */
     message DhcpInformEvent {
-        optional DhcpCommonData         dhcp_common_data                    = 1;
+        required DhcpCommonData         dhcp_common_data                    = 1;
     }
 
     /* DHCP Decline Event */
     message DhcpDeclineEvent {
-        optional DhcpCommonData         dhcp_common_data                    = 1;
+        required DhcpCommonData         dhcp_common_data                    = 1;
     }
 
     /* DHCP Request Event */
     message DhcpRequestEvent {
-        optional DhcpCommonData         dhcp_common_data                    = 1;
+        required DhcpCommonData         dhcp_common_data                    = 1;
         optional string                 hostname                            = 2;
     }
 
     /* DHCP Discover Event */
     message DhcpDiscoverEvent {
-        optional DhcpCommonData         dhcp_common_data                    = 1;
+        required DhcpCommonData         dhcp_common_data                    = 1;
         optional string                 hostname                            = 2;
     }
 
     /* DHCP Transaction */
     message DhcpTransaction {
         required uint32                 x_id                                = 1;
-        repeated DhcpAckEvent           dhcp_ack_event                      = 2;
-        repeated DhcpNakEvent           dhcp_nak_event                      = 3;
-        repeated DhcpOfferEvent         dhcp_offer_event                    = 4;
-        repeated DhcpInformEvent        dhcp_inform_event                   = 5;
-        repeated DhcpDeclineEvent       dhcp_decline_event                  = 6;
-        repeated DhcpRequestEvent       dhcp_request_event                  = 7;
-        repeated DhcpDiscoverEvent      dhcp_discover_event                 = 8;
+        optional DhcpAckEvent           dhcp_ack_event                      = 2;
+        optional DhcpNakEvent           dhcp_nak_event                      = 3;
+        optional DhcpOfferEvent         dhcp_offer_event                    = 4;
+        optional DhcpInformEvent        dhcp_inform_event                   = 5;
+        optional DhcpDeclineEvent       dhcp_decline_event                  = 6;
+        optional DhcpRequestEvent       dhcp_request_event                  = 7;
+        optional DhcpDiscoverEvent      dhcp_discover_event                 = 8;
     }
 
     /* Multiple Client Sessions */
