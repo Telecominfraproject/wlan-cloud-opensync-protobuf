@@ -2,7 +2,7 @@ name: Java Maven CI - TIP WLAN Opensync Protobuf
 
 on:
   push:
-    branches: [ master ]
+    branches: [ build-test ]
 
 jobs:
   build:
