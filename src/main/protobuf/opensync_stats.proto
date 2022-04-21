@@ -698,6 +698,7 @@ message EventReport {
         optional bool                   using11r                            = 10;
         optional bool                   using11v                            = 11;
         required uint64                 timestamp_ms                        = 12;
+        optional string                 bssid                               = 13;
     }
 
     /* Client Authentication Event */
@@ -708,6 +709,7 @@ message EventReport {
         required RadioBandType          band                                = 4;
         optional uint32                 auth_status                         = 5;
         required uint64                 timestamp_ms                        = 6;
+        optional string                 bssid                               = 7;
     }
 
     /* Client Disconnect Event */
@@ -724,6 +726,7 @@ message EventReport {
         required string                 ssid                                = 10;
         required RadioBandType          band                                = 11;
         required uint64                 timestamp_ms                        = 12;
+        optional string                 bssid                               = 13;
     }
 
     /* Client Connnect Event */
@@ -749,6 +752,7 @@ message EventReport {
         optional int64                  ev_time_bootup_in_us_ip             = 19;
         optional int32                  assoc_rssi                          = 20;
         required uint64                 timestamp_ms                        = 21;
+        optional string                 bssid                               = 22;
     }
 
     /* Client Failure Event */
